@@ -1,6 +1,6 @@
 ---
 title: GHome SW5
-date-published: 2024-10-02
+date-published: 2024-09-02
 type: switch
 standard: US
 board: BK7231N
@@ -9,6 +9,26 @@ board: BK7231N
 ![Product Image](ghome-sw5.jpg "Product Image")
 
 ## Flashing
+
+As of November 2024, there are two methods of flashing this device, using a serial adapter and ltchiptool, or OTA using tuya-cloudcutterflash
+
+Attention: Recently purchased units (Decemeber, 2024) contain a Lightning Semi LN882H rather than the Beken BK7231N.  These units cannot be flashed with ESPHome.  The newly purchased units also have screw terminals on the switch body for the wiring.  The older units had four wires coming off of the back of the switch body.
+
+### OTA
+
+CAUTION: either install the device properly in the wall before attempting, or have another way of safely powering the device. OTA flashing when the device is powered with mains current can be dangerous
+
+Newer versions of this switch use the BK7231N chip, running 1.0.1 firmware. These devices are able to be flashed using tuya-cloudcutter.
+
+Install Tuya-cloudcutter, following instructions [here](https://github.com/tuya-cloudcutter/tuya-cloudcutter/tree/main/custom-firmware)
+
+Once the tool is installed, run it with this command:
+
+```sudo ./tuya-cloudcutter.sh -p gosund-sw5-a-v2.1-smart-switch-bk7231n-v1.0.1 -f ESPHome-Kickstart-v23.08.29_bk7231n_app.ota.ug.bin```
+
+Follow the onscreen instructions to put the device into "slow blink" mode, and then power off/back on when prompted. This will install the ESPHome Kickstart firmware. From there is is possible to OTA install full ESPHome.
+
+### Serial
 
 The newer versions off amazon US (2024+) of this device came with a Beken BK7231N chip
 
